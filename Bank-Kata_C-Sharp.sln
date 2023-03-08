@@ -1,8 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "Bank\Bank.csproj", "{0F68A395-EFF9-4FF4-80AA-091FFBD94C10}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1C9DCC2D-22A7-40BB-8325-37260870309A} = {1C9DCC2D-22A7-40BB-8325-37260870309A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankShould", "BankShould\BankShould.csproj", "{1C9DCC2D-22A7-40BB-8325-37260870309A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F68A395-EFF9-4FF4-80AA-091FFBD94C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F68A395-EFF9-4FF4-80AA-091FFBD94C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F68A395-EFF9-4FF4-80AA-091FFBD94C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F68A395-EFF9-4FF4-80AA-091FFBD94C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9DCC2D-22A7-40BB-8325-37260870309A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9DCC2D-22A7-40BB-8325-37260870309A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9DCC2D-22A7-40BB-8325-37260870309A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9DCC2D-22A7-40BB-8325-37260870309A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
