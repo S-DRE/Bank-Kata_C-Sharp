@@ -1,8 +1,9 @@
 ﻿namespace Bank;
 
-public class Date
+public class DateCreator
 {
-    public Date(string s)
+
+    public virtual DateTime CreateCurrentDate()
     {
         throw new NotImplementedException();
     }

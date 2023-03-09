@@ -2,25 +2,27 @@
 
 public class Account
 {
-    public ProConsole ProConsole { get; }
+    private ProConsole proConsole;
+    private DateCreator dateCreator;
 
-    public Account(ProConsole proConsole)
+    public Account(ProConsole proConsole, DateCreator dateCreator)
     {
-        ProConsole = proConsole;
+        this.proConsole = proConsole;
+        this.dateCreator = dateCreator;
     }
 
-    public void Deposit(int amount, Date date)
+    public void Deposit(int amount)
     {
-        
+        throw new NotImplementedException();
     }
 
-    public void Withdraw(int amount, Date date)
+    public void Withdraw(int amount)
     {
-        
+        throw new NotImplementedException();
     }
 
     public void PrintStatement()
     {
-        
+        throw new NotImplementedException();
     }
 }

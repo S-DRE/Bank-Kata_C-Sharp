@@ -2,7 +2,7 @@
 
 public class ProConsole
 {
-    public void printLine(string lineToPrint)
+    public virtual void printLine(string lineToPrint)
     {
         throw new NotImplementedException();
     }
