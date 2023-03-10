@@ -1,4 +1,4 @@
-# Bank-Kata_C-Sharp
+# Bank Kata - C#
 Pair programming session of the Test Driven Development (TDD) Bank Kata in C#, with an Outside-In approach.
 
 Using:
