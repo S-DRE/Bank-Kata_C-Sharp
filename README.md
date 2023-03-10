@@ -1,5 +1,5 @@
 # Bank-Kata_C-Sharp
-Pair programming session of the Bank Kata in C#
+Pair programming session of the Test Driven Development (TDD) Bank Kata in C#, with an Outside-In approach.
 
 Using:
 * [xUnit](https://xunit.net/) as the testing framework 
@@ -8,4 +8,3 @@ Using:
 
 ### Bank Kata link:
 https://www.codurance.com/katalyst/bank
-
