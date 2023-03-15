@@ -1,9 +1,9 @@
 using Bank;
 using Moq;
 
-namespace BankShould;
+namespace BankTests;
 
-public class BankShould
+public class BankAcceptanceShould
 {
     [Fact]
     public void PerformPrintAListOfPreviousDepositsAndWithdrawals()
@@ -21,8 +21,10 @@ public class BankShould
         var dateMocker = new Mock<DateCreator>();
         DateCreator dateCreatorMock = dateMocker.Object;
 
+        var walletInMemoryRepo = new Wallet();
+
         // given
-        var account = new Account(proConsoleMock, dateCreatorMock);
+        var account = new Account(proConsoleMock, dateCreatorMock, walletInMemoryRepo);
         dateMocker.SetupSequence(x => x.CreateCurrentDate())
             .Returns(DateTime.Parse("14/01/2012"))
             .Returns(DateTime.Parse("13/01/2012"))

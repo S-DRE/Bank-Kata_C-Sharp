@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "Bank\Bank.csproj", 
 		{1C9DCC2D-22A7-40BB-8325-37260870309A} = {1C9DCC2D-22A7-40BB-8325-37260870309A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankShould", "BankShould\BankShould.csproj", "{1C9DCC2D-22A7-40BB-8325-37260870309A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTests", "BankTests\BankTests.csproj", "{1C9DCC2D-22A7-40BB-8325-37260870309A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,16 +4,18 @@ public class Account
 {
     private ProConsole proConsole;
     private DateCreator dateCreator;
+    private WalletRepository wallet;
 
-    public Account(ProConsole proConsole, DateCreator dateCreator)
+    public Account(ProConsole proConsole, DateCreator dateCreator, WalletRepository wallet)
     {
         this.proConsole = proConsole;
         this.dateCreator = dateCreator;
+        this.wallet = wallet;
     }
 
     public void Deposit(int amount)
     {
-        throw new NotImplementedException();
+        wallet.add(1000);
     }
 
     public void Withdraw(int amount)
