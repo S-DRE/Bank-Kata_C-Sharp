@@ -1,7 +1,7 @@
 using Bank;
 using Moq;
 
-namespace BankTests;
+namespace BankAcceptanceTests;
 
 public class BankAcceptanceShould
 {
@@ -26,9 +26,9 @@ public class BankAcceptanceShould
         // given
         var account = new Account(proConsoleMock, dateCreatorMock, walletInMemoryRepo);
         dateMocker.SetupSequence(x => x.CreateCurrentDate())
-            .Returns(DateTime.Parse("14/01/2012"))
+            .Returns(DateTime.Parse("10/01/2012"))
             .Returns(DateTime.Parse("13/01/2012"))
-            .Returns(DateTime.Parse("10/01/2012"));
+            .Returns(DateTime.Parse("14/01/2012"));
 
         // when
         account.Deposit(1000);
@@ -40,9 +40,9 @@ public class BankAcceptanceShould
         
         // It could also check a bunch of lines if the console has a method for stack of transactions
         consoleMocker.Verify(console => console.printLine("Date       || Amount || Balance"));
-        consoleMocker.Verify(console => console.printLine("14/01/2012 || -500   || 2500"));
-        consoleMocker.Verify(console => console.printLine("13/01/2012 || 2000   || 3000"));
-        consoleMocker.Verify(console => console.printLine("10/01/2012 || 1000   || 1000"));
+        consoleMocker.Verify(console => console.printLine("14/01/2012 || -500 || 2500"));
+        consoleMocker.Verify(console => console.printLine("13/01/2012 || 2000 || 3000"));
+        consoleMocker.Verify(console => console.printLine("10/01/2012 || 1000 || 1000"));
         
     }
 }
