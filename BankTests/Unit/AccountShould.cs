@@ -1,7 +1,7 @@
 ﻿using Bank;
 using Moq;
 
-namespace BankUnitTests;
+namespace BankTest.Unit;
 
 public class AccountShould
 {

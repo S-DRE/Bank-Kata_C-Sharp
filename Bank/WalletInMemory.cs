@@ -1,6 +1,6 @@
 ﻿namespace Bank;
 
-public class Wallet : WalletRepository
+public class WalletInMemory : WalletRepository
 {
     private int balance = 0;
     

@@ -1,9 +1,8 @@
 using Bank;
-using Moq;
 
-namespace BankTest;
+namespace BankTest.Acceptance;
 
-public class BankAcceptanceShould
+public class BankShould
 {
 
     [Fact]
@@ -12,12 +11,11 @@ public class BankAcceptanceShould
         // Given
         var console = new ProConsole();
         var dateCreator = new DateCreator();
-        var walletInMemoryRepo = new Wallet();
+        var walletInMemoryRepo = new WalletInMemory();
 
         // When
         var account = new Account(console, dateCreator, walletInMemoryRepo);
 
-        
         account.Deposit(1000);
         account.Deposit(2000);
         account.Withdraw(500);

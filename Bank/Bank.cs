@@ -13,7 +13,7 @@ public static class Bank
 
         var console = new ProConsole();
         var dateCreator = new DateCreator();
-        var walletInMemoryRepo = new Wallet();
+        var walletInMemoryRepo = new WalletInMemory();
 
         
         var account = new Account(console, dateCreator, walletInMemoryRepo);
