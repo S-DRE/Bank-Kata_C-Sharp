@@ -5,6 +5,6 @@ public class DateCreator
 
     public virtual DateTime CreateCurrentDate()
     {
-        throw new NotImplementedException();
+        return DateTime.Now;
     }
 }
