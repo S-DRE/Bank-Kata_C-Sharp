@@ -2,7 +2,7 @@
 
 public interface AccountService
 {
-    void deposit(int amount);
-    void withdraw(int amount);
-    void printStatement();
+    void Deposit(int amount);
+    void Withdraw(int amount);
+    void PrintStatement();
 }

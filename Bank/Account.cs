@@ -2,17 +2,24 @@
 
 public class Account : AccountService
 {
-    public void deposit(int amount)
+    private CashSafe cashSafe;
+    
+    public Account(CashSafe cashSafe)
+    {
+        this.cashSafe = cashSafe;
+    }
+
+    public void Deposit(int amount)
     {
         throw new NotImplementedException();
     }
 
-    public void withdraw(int amount)
+    public void Withdraw(int amount)
     {
         throw new NotImplementedException();
     }
 
-    public void printStatement()
+    public void PrintStatement()
     {
         throw new NotImplementedException();
     }
