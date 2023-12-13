@@ -2,16 +2,16 @@
 
 public class Account : AccountService
 {
-    private CashSafe cashSafe;
+    private readonly ICashSafe cashSafe;
     
-    public Account(CashSafe cashSafe)
+    public Account(ICashSafe cashSafe)
     {
         this.cashSafe = cashSafe;
     }
 
     public void Deposit(int amount)
     {
-        throw new NotImplementedException();
+        cashSafe.AddCash(amount);
     }
 
     public void Withdraw(int amount)

@@ -8,16 +8,16 @@ public class AccountShould
 {
 
     public Account account;
-    private readonly Mock<CashSafe> cashSafe = new();
+    private readonly Mock<ICashSafe> cashSafeMock = new();
     
     [Fact]
     public void AddMoneyInTheCashSafeWhenADepositIsMade()
     {
-        account = new Account(cashSafe.Object);
+        account = new Account(cashSafeMock.Object);
         
         account.Deposit(500);
         
-        cashSafe.Verify(safe => safe.AddCash(500));
+        cashSafeMock.Verify(safe => safe.AddCash(500));
     }
     
 }

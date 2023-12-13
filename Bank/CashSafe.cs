@@ -1,6 +1,6 @@
 ﻿namespace Bank;
 
-public class CashSafe
+public class CashSafe : ICashSafe
 {
     public int GetBalance()
     {
