@@ -2,18 +2,21 @@
 
 public class CashSafe : ICashSafe
 {
+
+    private int balance = 0;
+    
     public int GetBalance()
     {
-        throw new NotImplementedException();
+        return balance;
     }
 
     public void AddCash(int amount)
     {
-        throw new NotImplementedException();
+        balance += amount;
     }
     
     public void RemoveCash(int amount)
     {
-        throw new NotImplementedException();
+        balance -= amount;
     }
 }
