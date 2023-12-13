@@ -21,7 +21,7 @@ public class AccountShould
     }
 
     [Fact]
-    public void RemoveMoneyInTheCashSafeWhenAWithdrawalIsMade()
+    public void RemoveMoneyFromTheCashSafeWhenAWithdrawalIsMade()
     {
         account = new Account(cashSafeMock.Object);
         
