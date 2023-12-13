@@ -19,5 +19,15 @@ public class AccountShould
         
         cashSafeMock.Verify(safe => safe.AddCash(500));
     }
+
+    [Fact]
+    public void RemoveMoneyInTheCashSafeWhenAWithdrawalIsMade()
+    {
+        account = new Account(cashSafeMock.Object);
+        
+        account.Withdraw(500);
+        
+        cashSafeMock.Verify(safe => safe.RemoveCash(500));
+    }
     
 }

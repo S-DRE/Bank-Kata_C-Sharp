@@ -16,7 +16,7 @@ public class Account : AccountService
 
     public void Withdraw(int amount)
     {
-        throw new NotImplementedException();
+        cashSafe.RemoveCash(amount);
     }
 
     public void PrintStatement()

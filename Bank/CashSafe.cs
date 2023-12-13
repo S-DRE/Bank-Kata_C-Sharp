@@ -11,4 +11,9 @@ public class CashSafe : ICashSafe
     {
         throw new NotImplementedException();
     }
+    
+    public void RemoveCash(int amount)
+    {
+        throw new NotImplementedException();
+    }
 }
