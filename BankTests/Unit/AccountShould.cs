@@ -38,6 +38,8 @@ public class AccountShould
         
         account.Deposit(1000);
         account.Withdraw(500);
+        
+        account.PrintStatement();
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
