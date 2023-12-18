@@ -3,10 +3,16 @@
 public class Account : AccountService
 {
     private readonly ICashSafe cashSafe;
+    private readonly IConsolePrinter consolePrinter;
+    private readonly IMovementRepository movementRepository;
     
-    public Account(ICashSafe cashSafe)
+    private const string HEADER = "Date       || Amount || Balance";
+    
+    public Account(ICashSafe cashSafe, IConsolePrinter consolePrinter, IMovementRepository movementRepository)
     {
         this.cashSafe = cashSafe;
+        this.consolePrinter = consolePrinter;
+        this.movementRepository = movementRepository;
     }
 
     public void Deposit(int amount)
@@ -21,6 +27,12 @@ public class Account : AccountService
 
     public void PrintStatement()
     {
-        throw new NotImplementedException();
+        consolePrinter.PrintLine(HEADER);
+
+        var movements = movementRepository.GetMovements();
+
+        foreach (var movement in movements) {
+            consolePrinter.PrintLine(movement.GetDate() + "||" + movement.GetTransactionValue() + "||" + movement.GetOutputBalance());
+        }
     }
 }

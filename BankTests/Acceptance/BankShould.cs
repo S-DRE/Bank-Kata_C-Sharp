@@ -13,8 +13,10 @@ public class BankShould
     {
         // Given
         CashSafe cashSafe = new CashSafe();
+        ConsolePrinter consolePrinter = new ConsolePrinter();
+        MovementRepository movementRepository = new MovementRepository();
         
-        account = new Account(cashSafe);
+        account = new Account(cashSafe, consolePrinter, movementRepository);
         
         // When
         account.Deposit(1000);
