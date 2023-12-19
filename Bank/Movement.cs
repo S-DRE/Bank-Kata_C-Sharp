@@ -20,11 +20,11 @@ public class Movement : IMovement
 
     public int GetTransactionValue()
     {
-        throw new NotImplementedException();
+        return transactionValue;
     }
 
     public int GetOutputBalance()
     {
-        throw new NotImplementedException();
+        return outputBalance;
     }
 }
