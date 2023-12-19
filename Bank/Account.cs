@@ -7,6 +7,7 @@ public class Account : AccountService
     private readonly IMovementRepository movementRepository;
     
     private const string HEADER = "Date       || Amount || Balance";
+    private const string fixedDateForKataPurposes = "14/01/2012";
     
     public Account(ICashSafe cashSafe, IConsolePrinter consolePrinter, IMovementRepository movementRepository)
     {
@@ -17,6 +18,7 @@ public class Account : AccountService
 
     public void Deposit(int amount)
     {
+        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes), amount, cashSafe.GetBalance()+amount);
         cashSafe.AddCash(amount);
     }
 
