@@ -28,7 +28,7 @@ public class BankShould
 
         // Then
         Assert.Equal(2500, cashSafe.GetBalance());
-        Assert.Equal(new List<IMovement>
+        Assert.Equivalent(new List<IMovement>
         {
             new Movement(DateOnly.Parse("14/01/2012"), 1000, 1000),
             new Movement(DateOnly.Parse("14/01/2012"), 2000, 3000),
