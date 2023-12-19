@@ -36,6 +36,14 @@ public class AccountShould
     [Fact]
     public void PrintWithProperFormattingTheHistoricOfMovements()
     {
+        movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
+            new List<IMovement>
+            {
+                new Movement(DateOnly.Parse("14/12/2023"), 1000, 500),
+                new Movement(DateOnly.Parse("14/12/2023"), -500, 500)
+            }
+        );
+        
         account.Deposit(1000);
         account.Withdraw(500);
         
