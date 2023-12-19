@@ -17,4 +17,15 @@ public class MovementRepositoryShould
     {
         Assert.Equal(new List<IMovement>(), movementRepo.GetMovements());
     }
+
+    [Fact]
+    public void AddMovementToTheListOfMovements()
+    {
+        movementRepo.AddMovement(DateOnly.Parse("14/01/2012"), 500, 500);
+        
+        Assert.Equal(new List<IMovement>
+        {
+            new Movement(DateOnly.Parse("14/01/2012"), 500, 500)
+        }, movementRepo.GetMovements());
+    }
 }
