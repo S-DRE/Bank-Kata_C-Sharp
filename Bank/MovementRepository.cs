@@ -8,4 +8,9 @@ public class MovementRepository : IMovementRepository
     {
         return movementsList;
     }
+
+    public void AddMovement(DateOnly movementDate, int transactionValue, int outputBalance)
+    {
+        throw new NotImplementedException();
+    }
 }

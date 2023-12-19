@@ -18,11 +18,12 @@ public class AccountShould
     }
 
     [Fact]
-    public void AddMoneyInTheCashSafeWhenADepositIsMade()
+    public void AddMoneyInTheCashSafeWhenADepositIsMadeAndAddMovementToTheRepo()
     {
         account.Deposit(500);
         
         cashSafeMock.Verify(safe => safe.AddCash(500));
+        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012"), 500, 500));
     }
 
     [Fact]
