@@ -15,7 +15,7 @@ public class Movement : IMovement
 
     public DateOnly GetDate()
     {
-        throw new NotImplementedException();
+        return date;
     }
 
     public int GetTransactionValue()
