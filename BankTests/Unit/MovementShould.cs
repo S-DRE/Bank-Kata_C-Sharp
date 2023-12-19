@@ -18,4 +18,16 @@ public class MovementShould
     {
         Assert.Equal(DateOnly.Parse("14/12/2012"), movement.GetDate());
     }
+
+    [Fact]
+    public void RetrieveTransactionValueWhenAsked()
+    {
+        Assert.Equal(1000, movement.GetTransactionValue());
+    }
+
+    [Fact]
+    public void RetrieveOutputBalanceWhenAsked()
+    {
+        Assert.Equal(5000, movement.GetOutputBalance());
+    }
 }
