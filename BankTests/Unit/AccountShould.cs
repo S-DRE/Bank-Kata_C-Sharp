@@ -39,8 +39,8 @@ public class AccountShould
         movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
             new List<IMovement>
             {
-                new Movement(DateOnly.Parse("14/12/2023"), 1000, 500),
-                new Movement(DateOnly.Parse("14/12/2023"), -500, 500)
+                new Movement(DateOnly.Parse("14/01/2012"), 1000, 1000),
+                new Movement(DateOnly.Parse("14/01/2012"), -500, 500)
             }
         );
         
@@ -50,7 +50,7 @@ public class AccountShould
         account.PrintStatement();
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500   || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
     }
 }
