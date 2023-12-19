@@ -24,6 +24,7 @@ public class Account : AccountService
 
     public void Withdraw(int amount)
     {
+        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes), amount * -1, cashSafe.GetBalance()-amount);
         cashSafe.RemoveCash(amount);
     }
 
