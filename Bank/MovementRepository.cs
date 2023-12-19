@@ -11,6 +11,6 @@ public class MovementRepository : IMovementRepository
 
     public void AddMovement(DateOnly movementDate, int transactionValue, int outputBalance)
     {
-        throw new NotImplementedException();
+        movementsList.Add(new Movement(movementDate, transactionValue, outputBalance));
     }
 }
