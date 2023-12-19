@@ -4,6 +4,7 @@ public class ConsolePrinter : IConsolePrinter
 {
     public void PrintLine(string lineToPrint)
     {
-        throw new NotImplementedException();
+        // TODO: Think about how to test this and if it is needed at all.
+        Console.WriteLine(lineToPrint);
     }
 }
