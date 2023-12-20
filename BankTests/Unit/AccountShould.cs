@@ -58,4 +58,39 @@ public class AccountShould
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
     }
+
+    [Fact]
+    public void PrintInInverseOrder()
+    {
+        movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
+            new List<IMovement>
+            {
+                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
+                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 500)
+            }
+        );
+        
+        // Capturing calls to method
+        List<string> actualCalls = new();
+        consolePrinterMock.Setup(consolePrinter => consolePrinter.PrintLine(Capture.In(actualCalls)));
+        
+        account.Deposit(1000);
+        account.Withdraw(500);
+        
+        account.PrintStatement();
+
+        List<string> expectedOrderedCalls = new()
+        {
+            "Date       || Amount || Balance",
+            "14/01/2012 || -500 || 500",
+            "14/01/2012 || 1000 || 1000"
+        };
+
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
+        
+        // Checking the order is correct
+        Assert.Equal(expectedOrderedCalls, actualCalls);
+    }
 }
