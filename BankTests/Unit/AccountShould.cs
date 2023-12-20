@@ -55,8 +55,8 @@ public class AccountShould
         account.PrintStatement();
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
     }
 
     [Fact]
