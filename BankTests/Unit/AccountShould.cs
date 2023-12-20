@@ -55,8 +55,8 @@ public class AccountShould
         account.PrintStatement();
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500   || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
     }
 
     [Fact]
@@ -82,13 +82,13 @@ public class AccountShould
         List<string> expectedOrderedCalls = new()
         {
             "Date       || Amount || Balance",
-            "14/01/2012 || -500 || 500",
-            "14/01/2012 || 1000 || 1000"
+            "14/01/2012 || -500   || 500",
+            "14/01/2012 || 1000   || 1000"
         };
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500 || 500"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000 || 1000"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500   || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
         
         // Checking the order is correct
         Assert.Equal(expectedOrderedCalls, actualCalls);

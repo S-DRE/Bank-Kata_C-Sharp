@@ -39,7 +39,7 @@ public class Account : AccountService
         movements.Reverse();
 
         foreach (var movement in movements) {
-            consolePrinter.PrintLine(movement.GetDate() + " || " + movement.GetTransactionValue() + " || " + movement.GetOutputBalance());
+            consolePrinter.PrintLine(movement.GetDate() + " || " + movement.GetTransactionValue() + "   || " + movement.GetOutputBalance());
         }
     }
 }
