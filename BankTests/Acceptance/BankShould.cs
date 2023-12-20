@@ -16,6 +16,13 @@ public class BankShould
         CashSafe cashSafe = new CashSafe();
         ConsolePrinter consolePrinter = new ConsolePrinter();
         MovementRepository movementRepository = new MovementRepository();
+
+        List<IMovement> expectedMovements = new()
+        {
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 2500),
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 2000, 3000),
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000)
+        };
         
         account = new Account(cashSafe, consolePrinter, movementRepository);
         
@@ -29,11 +36,8 @@ public class BankShould
 
         // Then
         Assert.Equal(2500, cashSafe.GetBalance());
-        Assert.Equivalent(new List<IMovement>
-        {
-            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
-            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 2000, 3000),
-            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 2500)
-        }, movementRepository.GetMovements());
+        Assert.Equivalent(expectedMovements, movementRepository.GetMovements());
+
+        Assert.True(movementRepository.GetMovements().SequenceEqual(expectedMovements));
     }
 }
