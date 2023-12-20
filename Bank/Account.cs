@@ -36,6 +36,8 @@ public class Account : AccountService
 
         var movements = movementRepository.GetMovements();
 
+        movements.Reverse();
+
         foreach (var movement in movements) {
             consolePrinter.PrintLine(movement.GetDate() + " || " + movement.GetTransactionValue() + " || " + movement.GetOutputBalance());
         }
