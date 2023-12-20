@@ -1,4 +1,6 @@
-﻿using Bank;
+﻿using System.Globalization;
+using Bank;
+using Bank.Helpers;
 using Moq;
 using Xunit;
 
@@ -12,6 +14,7 @@ public class AccountShould
     private readonly Mock<IConsolePrinter> consolePrinterMock = new();
     private readonly Mock<IMovementRepository> movementRepositoryMock = new();
 
+
     public AccountShould()
     {
         account = new Account(cashSafeMock.Object, consolePrinterMock.Object, movementRepositoryMock.Object);
@@ -23,7 +26,7 @@ public class AccountShould
         account.Deposit(500);
         
         cashSafeMock.Verify(safe => safe.AddCash(500));
-        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012"), 500, 500));
+        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 500, 500));
     }
 
     [Fact]
@@ -32,7 +35,7 @@ public class AccountShould
         account.Withdraw(500);
         
         cashSafeMock.Verify(safe => safe.RemoveCash(500));
-        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012"), -500, -500));
+        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, -500));
     }
 
     [Fact]
@@ -41,8 +44,8 @@ public class AccountShould
         movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
             new List<IMovement>
             {
-                new Movement(DateOnly.Parse("14/01/2012"), 1000, 1000),
-                new Movement(DateOnly.Parse("14/01/2012"), -500, 500)
+                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
+                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 500)
             }
         );
         

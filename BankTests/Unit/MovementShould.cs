@@ -1,4 +1,5 @@
 ﻿using Bank;
+using Bank.Helpers;
 using Xunit;
 
 namespace BankTest.Unit;
@@ -10,13 +11,13 @@ public class MovementShould
     
     public MovementShould()
     {
-        movement = new Movement(DateOnly.Parse("14/12/2012"), 1000, 5000);
+        movement = new Movement(DateOnly.Parse("14/12/2012", GlobalVars.CULTURE_INFO), 1000, 5000);
     }
     
     [Fact]
     public void RetrieveDateWhenAsked()
     {
-        Assert.Equal(DateOnly.Parse("14/12/2012"), movement.GetDate());
+        Assert.Equal(DateOnly.Parse("14/12/2012", GlobalVars.CULTURE_INFO), movement.GetDate());
     }
 
     [Fact]

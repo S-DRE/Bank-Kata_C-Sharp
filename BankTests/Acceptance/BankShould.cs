@@ -1,4 +1,5 @@
 ﻿using Bank;
+using Bank.Helpers;
 using Xunit;
 
 namespace BankTest.Acceptance;
@@ -30,9 +31,9 @@ public class BankShould
         Assert.Equal(2500, cashSafe.GetBalance());
         Assert.Equivalent(new List<IMovement>
         {
-            new Movement(DateOnly.Parse("14/01/2012"), 1000, 1000),
-            new Movement(DateOnly.Parse("14/01/2012"), 2000, 3000),
-            new Movement(DateOnly.Parse("14/01/2012"), -500, 2500)
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 2000, 3000),
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 2500)
         }, movementRepository.GetMovements());
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Bank;
+﻿using Bank.Helpers;
+
+namespace Bank;
 
 public class Account : AccountService
 {
@@ -18,13 +20,13 @@ public class Account : AccountService
 
     public void Deposit(int amount)
     {
-        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes), amount, cashSafe.GetBalance()+amount);
+        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes, GlobalVars.CULTURE_INFO), amount, cashSafe.GetBalance()+amount);
         cashSafe.AddCash(amount);
     }
 
     public void Withdraw(int amount)
     {
-        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes), amount * -1, cashSafe.GetBalance()-amount);
+        movementRepository.AddMovement(DateOnly.Parse(fixedDateForKataPurposes, GlobalVars.CULTURE_INFO), amount * -1, cashSafe.GetBalance()-amount);
         cashSafe.RemoveCash(amount);
     }
 

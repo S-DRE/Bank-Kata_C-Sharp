@@ -3,7 +3,7 @@
 public class CashSafe : ICashSafe
 {
 
-    private int balance = 0;
+    private int balance;
     
     public int GetBalance()
     {

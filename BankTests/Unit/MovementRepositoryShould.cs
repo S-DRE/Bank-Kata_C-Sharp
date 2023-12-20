@@ -1,4 +1,5 @@
 ﻿using Bank;
+using Bank.Helpers;
 using Xunit;
 
 namespace BankTest.Unit;
@@ -21,11 +22,11 @@ public class MovementRepositoryShould
     [Fact]
     public void AddMovementToTheListOfMovements()
     {
-        movementRepo.AddMovement(DateOnly.Parse("14/01/2012"), 500, 500);
+        movementRepo.AddMovement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 500, 500);
         
         Assert.Equivalent(new List<IMovement>
         {
-            new Movement(DateOnly.Parse("14/01/2012"), 500, 500)
+            new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 500, 500)
         }, movementRepo.GetMovements());
     }
 }
