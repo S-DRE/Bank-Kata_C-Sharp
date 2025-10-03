@@ -1,51 +1,44 @@
-﻿namespace Bank;
+using Bank.Helpers;
 
-public class Account
+namespace Bank;
+
+public class Account : AccountService
 {
-    private ProConsole proConsole;
-    private DateCreator dateCreator;
-    private WalletRepository wallet;
-    private List<Movement> movements = new();
-
-    public Account(ProConsole proConsole, DateCreator dateCreator, WalletRepository wallet)
+    private readonly ICashSafe cashSafe;
+    private readonly IConsolePrinter consolePrinter;
+    private readonly IMovementRepository movementRepository;
+    
+    private const string HEADER = "Date       || Amount || Balance";
+    
+    public Account(ICashSafe cashSafe, IConsolePrinter consolePrinter, IMovementRepository movementRepository)
     {
-        this.proConsole = proConsole;
-        this.dateCreator = dateCreator;
-        this.wallet = wallet;
+        this.cashSafe = cashSafe;
+        this.consolePrinter = consolePrinter;
+        this.movementRepository = movementRepository;
     }
 
-    public void Deposit(int amount)
+    public void Deposit(DateOnly date, int amount)
     {
-        wallet.add(amount);
-        AddMovement(amount);
+        movementRepository.AddMovement(date, amount, cashSafe.GetBalance()+amount);
+        cashSafe.AddCash(amount);
     }
 
-    public void Withdraw(int amount)
+    public void Withdraw(DateOnly date, int amount)
     {
-        wallet.remove(amount);
-        AddMovement(amount*-1);
+        movementRepository.AddMovement(date, amount * -1, cashSafe.GetBalance()-amount);
+        cashSafe.RemoveCash(amount);
     }
 
     public void PrintStatement()
     {
-        proConsole.printLine("Date       || Amount || Balance");
+        consolePrinter.PrintLine(HEADER);
 
-        for(int i=movements.Count-1; i>=0; i--)
-        {
-            proConsole.printLine(FormatLine(i));
+        var movements = movementRepository.GetMovements();
+
+        movements.Reverse();
+
+        foreach (var movement in movements) {
+            consolePrinter.PrintLine(movement.GetDate() + " || " + movement.GetTransactionValue() + "   || " + movement.GetOutputBalance());
         }
-        
-    }
-
-    private void AddMovement(int amount)
-    {
-        movements.Add(new Movement(dateCreator.CreateCurrentDate(), amount, wallet.getBalance()));
-    }
-    
-    private string FormatLine(int index)
-    {
-        return movements[index].date.ToString("dd/MM/yyyy") + " || " +
-               movements[index].operationAmount + " || " +
-               movements[index].remainingBalance;
     }
 }
