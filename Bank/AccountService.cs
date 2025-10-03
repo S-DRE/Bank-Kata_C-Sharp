@@ -1,8 +1,8 @@
-﻿namespace Bank;
+namespace Bank;
 
 public interface AccountService
 {
-    void Deposit(int amount);
-    void Withdraw(int amount);
+    void Deposit(DateOnly date, int amount);
+    void Withdraw(DateOnly date, int amount);
     void PrintStatement();
 }
