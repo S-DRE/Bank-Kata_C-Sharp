@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Bank;
 using Bank.Helpers;
 using Moq;
@@ -23,19 +23,19 @@ public class AccountShould
     [Fact]
     public void AddMoneyInTheCashSafeWhenADepositIsMadeAndAddMovementToTheRepo()
     {
-        account.Deposit(500);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()), 500);
         
         cashSafeMock.Verify(safe => safe.AddCash(500));
-        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 500, 500));
+        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse(DateTime.Now.ToShortDateString()), 500, 500));
     }
 
     [Fact]
     public void RemoveMoneyFromTheCashSafeWhenAWithdrawalIsMadeAndAddMovementToTheRepo()
     {
-        account.Withdraw(500);
+        account.Withdraw(DateOnly.Parse(DateTime.Now.ToShortDateString()), 500);
         
         cashSafeMock.Verify(safe => safe.RemoveCash(500));
-        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, -500));
+        movementRepositoryMock.Verify(repo => repo.AddMovement(DateOnly.Parse(DateTime.Now.ToShortDateString()), -500, -500));
     }
 
     [Fact]
@@ -44,19 +44,19 @@ public class AccountShould
         movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
             new List<IMovement>
             {
-                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
-                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 500)
+                new Movement(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000, 1000),
+                new Movement(DateOnly.Parse(DateTime.Now.ToShortDateString()), -500, 500)
             }
         );
         
-        account.Deposit(1000);
-        account.Withdraw(500);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000);
+        account.Withdraw(DateOnly.Parse(DateTime.Now.ToShortDateString()), 500);
         
         account.PrintStatement();
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500   || 500"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine($"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || -500   || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine($"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || 1000   || 1000"));
     }
 
     [Fact]
@@ -65,8 +65,8 @@ public class AccountShould
         movementRepositoryMock.Setup(x => x.GetMovements()).Returns(
             new List<IMovement>
             {
-                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), 1000, 1000),
-                new Movement(DateOnly.Parse("14/01/2012", GlobalVars.CULTURE_INFO), -500, 500)
+                new Movement(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000, 1000),
+                new Movement(DateOnly.Parse(DateTime.Now.ToShortDateString()), -500, 500)
             }
         );
         
@@ -74,21 +74,21 @@ public class AccountShould
         List<string> actualCalls = new();
         consolePrinterMock.Setup(consolePrinter => consolePrinter.PrintLine(Capture.In(actualCalls)));
         
-        account.Deposit(1000);
-        account.Withdraw(500);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000);
+        account.Withdraw(DateOnly.Parse(DateTime.Now.ToShortDateString()), 500);
         
         account.PrintStatement();
 
         List<string> expectedOrderedCalls = new()
         {
             "Date       || Amount || Balance",
-            "14/01/2012 || -500   || 500",
-            "14/01/2012 || 1000   || 1000"
+            $"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || -500   || 500",
+            $"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || 1000   || 1000"
         };
 
         consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("Date       || Amount || Balance"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || -500   || 500"));
-        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine("14/01/2012 || 1000   || 1000"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine($"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || -500   || 500"));
+        consolePrinterMock.Verify(consolePrinter => consolePrinter.PrintLine($"{DateOnly.Parse(DateTime.Now.ToShortDateString())} || 1000   || 1000"));
         
         // Checking the order is correct
         Assert.Equal(expectedOrderedCalls, actualCalls);
