@@ -1,27 +1,27 @@
-﻿namespace Bank;
+namespace Bank;
 
 public static class Bank
 {
     static void Main(string[] args)
     {
         /*
-        * Date       || Amount || Balance
-          29/05/2023 || -500   || 2500
-          29/05/2023 || 2000   || 3000
-          29/05/2023 || 1000   || 1000
-        */
+       * Date       || Amount || Balance
+         14/01/2012 || -500   || 2500
+         14/01/2012 || 2000   || 3000
+         14/01/2012 || 1000   || 1000
+       */
 
-        var console = new ProConsole();
-        var dateCreator = new DateCreator();
-        var walletInMemoryRepo = new WalletInMemory();
-
-        
-        var account = new Account(console, dateCreator, walletInMemoryRepo);
+        var consolePrinter = new ConsolePrinter();
+        var cashSafe = new CashSafe();
+        var movementRepo = new MovementRepository();
 
         
-        account.Deposit(1000);
-        account.Deposit(2000);
-        account.Withdraw(500);
+        var account = new Account(cashSafe, consolePrinter, movementRepo);
+
+        
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()),2000);
+        account.Withdraw(DateOnly.Parse(DateTime.Now.ToShortDateString()),500);
         account.PrintStatement();
     }
 }
