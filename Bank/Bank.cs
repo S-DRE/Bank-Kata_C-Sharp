@@ -1,4 +1,4 @@
-﻿namespace Bank;
+namespace Bank;
 
 public static class Bank
 {
@@ -19,9 +19,9 @@ public static class Bank
         var account = new Account(cashSafe, consolePrinter, movementRepo);
 
         
-        account.Deposit(1000);
-        account.Deposit(2000);
-        account.Withdraw(500);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()), 1000);
+        account.Deposit(DateOnly.Parse(DateTime.Now.ToShortDateString()),2000);
+        account.Withdraw(DateOnly.Parse(DateTime.Now.ToShortDateString()),500);
         account.PrintStatement();
     }
 }
